@@ -1,0 +1,35 @@
+syntax = "proto3";                  //proto3 syntax of Protocol Buffers is used
+
+option go_package = "github.com/snipep/common/orders";//specifing the Go package that will be used when generating Go code
+
+service OrderService {              //Creating a service 
+    rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+
+    rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse) {}
+}
+
+message Order{
+    int32 OrderID = 1;
+    int32 CustomerID = 2;
+    int32 ProductID = 3;
+    int32 Quantity = 4;
+}
+
+message CreateOrderRequest{
+    int32 customerID = 1;
+    int32 productID = 2;
+    int32 quantity = 3;
+}
+
+message CreateOrderResponse{
+    string status = 1;
+}
+
+message GetOrdersRequest {
+    int32 customerID = 1;
+}
+
+message GetOrdersResponse {
+    repeated Order orders = 1;          //A repeated field, which means it’s an array of Order messages. 
+                                        //This field will hold the slice of orders retrieved for the customer.
+}

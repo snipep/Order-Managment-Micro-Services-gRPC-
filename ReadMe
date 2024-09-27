@@ -1,0 +1,4 @@
+for launching the program run on 2 terminals
+    make run-orders
+    make run-kitchen
+
